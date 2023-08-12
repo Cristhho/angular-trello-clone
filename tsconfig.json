@@ -4,7 +4,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-
+      "@types": ["./src/types/index"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
