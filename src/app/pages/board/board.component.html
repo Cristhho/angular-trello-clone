@@ -33,7 +33,7 @@
               }"
               cdkDrag
               *ngFor="let task of column.tasks"
-              (click)="openModal()">
+              (click)="openModal(task)">
               {{task.title}}
             </div>
           </div>

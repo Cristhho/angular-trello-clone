@@ -49,11 +49,17 @@ export class BoardComponent {
     moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex)
   }
 
-  openModal() {
-    this.dialog.open(TodoDialogComponent, {
+  openModal(task: Todo) {
+    const dialogRef = this.dialog.open(TodoDialogComponent, {
       minWidth: '300px',
       maxWidth: '75%',
-      autoFocus: false
+      autoFocus: false,
+      data: {
+        task
+      }
+    })
+    dialogRef.closed.subscribe((output) => {
+      console.log(output)
     })
   }
 }
