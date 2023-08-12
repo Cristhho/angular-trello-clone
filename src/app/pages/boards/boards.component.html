@@ -1,2 +1,31 @@
 <app-navbar></app-navbar>
-<p>boards works!</p>
+<div class="container mx-auto sm:flex sm:items-start pt-10">
+  <div class="w-full sm:w-1/4 md:w-1/5 sm:shadow">
+    <ul class="flex flex-col font-medium text-gray-700">
+      <li>
+        <a class="block bg-sky-100 rounded py-1 px-3 text-sky-700"
+          ><fa-icon [icon]="iconTrello"></fa-icon> Boards</a
+        >
+      </li>
+      <li>
+        <a class="block py-1 px-3"
+          ><fa-icon [icon]="iconBox"></fa-icon> Templates</a
+        >
+      </li>
+      <li>
+        <a class="block py-1 px-3"
+          ><fa-icon [icon]="iconWave"></fa-icon> Home</a
+        >
+      </li>
+    </ul>
+  </div>
+  <div class="w-full sm:w-3/4 md:w-4/5 px-5">
+    <h1 class="text-lg font-bold mb-4"><fa-icon [icon]="iconClock"></fa-icon> Recently viewed</h1>
+    <div class="grid grid-cols-2 gap-2 lg:grid-cols-4 lg:gap-4">
+      <div class="w-full bg-sky-700 px-4 py-2 rounded text-white font-bold h-24">Board 1</div>
+      <div class="w-full bg-green-700 px-4 py-2 rounded text-white font-bold h-24">Board 1</div>
+      <div class="w-full bg-amber-700 px-4 py-2 rounded text-white font-bold h-24">Board 1</div>
+      <div class="w-full bg-indigo-700 px-4 py-2 rounded text-white font-bold h-24">Board 1</div>
+    </div>
+  </div>
+</div>
