@@ -18,6 +18,15 @@ export class BtnComponent {
   textColor: string = 'text-white'
 
   get colorClasses() {
-    return `bg-${this.color}-500 hover:bg-${this.color}-700`;
+    switch (this.color) {
+      case 'success' :
+        return 'bg-success-500 hover:bg-success-700'
+      case 'error':
+        return 'bg-red-500 hover:bg-red-700'
+      case 'warning':
+        return 'bg-yellow-500 hover:bg-yellow-700'
+      default:
+        return 'bg-primary-500 hover:bg-primary-700'
+    }
   }
 }
