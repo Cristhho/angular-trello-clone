@@ -32,7 +32,8 @@
                 'bg-success-300 hover:bg-success-600': column.title === 'Done'
               }"
               cdkDrag
-              *ngFor="let task of column.tasks">
+              *ngFor="let task of column.tasks"
+              (click)="openModal()">
               {{task.title}}
             </div>
           </div>

@@ -25,6 +25,8 @@ export class BtnComponent {
         return 'bg-red-500 hover:bg-red-700'
       case 'warning':
         return 'bg-yellow-500 hover:bg-yellow-700'
+      case 'gray-light':
+        return 'bg-gray-200 hover:bg-gray-400'
       default:
         return 'bg-primary-500 hover:bg-primary-700'
     }
