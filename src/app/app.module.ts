@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {OverlayModule} from '@angular/cdk/overlay'
+import {CdkAccordionModule} from '@angular/cdk/accordion'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +23,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     BrowserModule,
     OverlayModule,
     FontAwesomeModule,
+    CdkAccordionModule,
     AppRoutingModule
   ],
   providers: [],
