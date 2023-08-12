@@ -38,4 +38,8 @@ export class BoardComponent {
       transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex)
     }
   }
+
+  dropColumn($event: CdkDragDrop<BoardColumn[]>) {
+    moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex)
+  }
 }
