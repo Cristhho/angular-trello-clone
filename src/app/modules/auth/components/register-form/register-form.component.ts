@@ -5,6 +5,8 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 import { Status } from '@types'
 import { CustomValidators } from '@utils/validators'
+import { AuthService } from '../../services/auth.service'
+import { HttpErrorResponse } from '@angular/common/http'
 
 @Component({
   selector: 'app-register-form',
@@ -16,6 +18,7 @@ export class RegisterFormComponent {
   iconEyeSlash = faEyeSlash
 
   status: Status = 'init'
+  errorMessage = ''
   showPassword = false
 
   form!: FormGroup
@@ -35,6 +38,7 @@ export class RegisterFormComponent {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
+    private readonly authService: AuthService
   ) {
     this.buildForm()
   }
@@ -43,7 +47,7 @@ export class RegisterFormComponent {
     this.form = this.formBuilder.nonNullable.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.email, Validators.required]],
-      password: ['', [Validators.minLength(6), Validators.required]],
+      password: ['', [Validators.minLength(8), Validators.required]],
       confirmPassword: ['', [Validators.required]]
     }, {
       validators: [ CustomValidators.MatchValidator('password', 'confirmPassword') ]
@@ -54,7 +58,24 @@ export class RegisterFormComponent {
     if (this.form.valid) {
       this.status = 'loading';
       const { name, email, password } = this.form.getRawValue();
-
+      this.authService.register({
+        name, email, password
+      }).subscribe({
+        next: () => {
+          this.status = 'success'
+          this.router.navigate(['/login'])
+        },
+        error: (error) => {
+          this.status = 'failed'
+          if (error instanceof HttpErrorResponse) {
+            if (error.error.code === 'SQLITE_CONSTRAINT_UNIQUE') {
+              this.errorMessage = 'Email already taken by other user'
+            } else if (error.error.error) {
+              this.errorMessage = error.error.message[0]
+            }
+          }
+        }
+      })
     } else {
       this.form.markAllAsTouched();
     }
