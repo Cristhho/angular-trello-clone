@@ -8,6 +8,7 @@
       "@models/*": ["./src/app/model/*"],
       "@modules/*": ["./src/app/modules/*"],
       "@enviroments/*": ["./src/enviroments/*"],
+      "@utils/*": ["./src/app/utils/*"],
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

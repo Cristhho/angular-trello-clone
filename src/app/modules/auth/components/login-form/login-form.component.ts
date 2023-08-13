@@ -35,7 +35,7 @@ export class LoginFormComponent {
     this.buildForm()
   }
 
-  buildForm() {
+  private buildForm() {
     this.form = this.formBuilder.nonNullable.group({
       email: ['', [Validators.email, Validators.required]],
       password: ['', [ Validators.required, Validators.minLength(6)]]
