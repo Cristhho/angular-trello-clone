@@ -16,6 +16,9 @@ export class ButtonComponent {
   @Input()
   textColor: string = 'text-white'
 
+  @Input()
+  disabled = false
+
   get colorClasses() {
     switch (this.color) {
       case 'success' :

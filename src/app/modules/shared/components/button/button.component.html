@@ -1,6 +1,7 @@
 <button
   class="w-full rounded text-sm py-3 font-bold uppercase"
   [ngClass]="[colorClasses, textColor]"
-  [type]="type">
+  [type]="type"
+  [disabled]="disabled">
   <ng-content></ng-content>
 </button>
