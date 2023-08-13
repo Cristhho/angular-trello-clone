@@ -34,4 +34,12 @@ export class AuthService {
   isAvailable(email: string) {
     return this.httpClient.post<{isAvailable: boolean}>(`${this.apiUrl}/auth/is-available`, {email})
   }
+
+  recovery(email: string) {
+    return this.httpClient.post(`${this.apiUrl}/auth/recovery`, {email})
+  }
+
+  changePassword(token: string, password: string) {
+    return this.httpClient.post(`${this.apiUrl}/auth/change-password`, {token, password})
+  }
 }
