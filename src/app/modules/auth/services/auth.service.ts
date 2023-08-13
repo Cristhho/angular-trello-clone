@@ -23,4 +23,8 @@ export class AuthService {
   register(body: RegisterDTO) {
     return this.httpClient.post(`${this.apiUrl}/auth/register`, body)
   }
+
+  isAvailable(email: string) {
+    return this.httpClient.post<{isAvailable: boolean}>(`${this.apiUrl}/auth/is-available`, {email})
+  }
 }

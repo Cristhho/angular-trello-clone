@@ -1,3 +1,35 @@
+<ng-container *ngIf="!showRegister">
+<h1 class="text-center font-bold py-2 text-gray-700">Enter your data</h1>
+<form novalidate class="space-y-4" [formGroup]="formEmail" (ngSubmit)="validateEmail()">
+  <div>
+    <div class="relative">
+      <input
+        placeholder="Enter email"
+        type="email"
+        name="email"
+        class="w-full rounded bg-gray-100 border-gray-300 border-2"
+        formControlName="email" />
+    </div>
+    <div *ngIf="email2Field!.touched && email2Field!.invalid">
+      <p
+        *ngIf="email2Field!.hasError('required')"
+        class="font-medium text-red-500 text-xs mt-1 ml-1">
+        This field is mandatory
+      </p>
+      <p
+        *ngIf="email2Field!.hasError('email')"
+        class="font-medium text-red-500 text-xs mt-1 ml-1">
+        This field should be a email
+      </p>
+    </div>
+  </div>
+  <div>
+    <app-button type="submit" color="success" class="block" [disabled]="statusEmail === 'loading'">Continue</app-button>
+  </div>
+</form>
+</ng-container>
+
+<ng-container *ngIf="showRegister">
 <h1 class="text-center font-bold py-2 text-gray-700">Enter your data</h1>
 <form novalidate class="space-y-4" [formGroup]="form" (ngSubmit)="register()">
   <div>
@@ -96,3 +128,4 @@
     <app-button type="submit" color="success" class="block" [disabled]="status === 'loading'">Register</app-button>
   </div>
 </form>
+</ng-container>

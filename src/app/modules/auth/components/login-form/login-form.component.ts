@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { faPen, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 import { AuthService } from '../../services/auth.service'
@@ -30,9 +30,15 @@ export class LoginFormComponent {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
+    private readonly route: ActivatedRoute,
     private readonly authService: AuthService,
   ) {
     this.buildForm()
+    this.route.queryParamMap.subscribe((query) => {
+      if (query.has('email')) {
+        this.emailField?.setValue(query.get('email'))
+      }
+    })
   }
 
   private buildForm() {

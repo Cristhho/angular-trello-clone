@@ -18,8 +18,15 @@ export class RegisterFormComponent {
   iconEyeSlash = faEyeSlash
 
   status: Status = 'init'
+  statusEmail: Status = 'init'
   errorMessage = ''
   showPassword = false
+  showRegister = false
+
+  formEmail!: FormGroup
+  get email2Field() {
+    return this.formEmail.get('email')
+  }
 
   form!: FormGroup
   get nameField() {
@@ -52,12 +59,16 @@ export class RegisterFormComponent {
     }, {
       validators: [ CustomValidators.MatchValidator('password', 'confirmPassword') ]
     })
+
+    this.formEmail = this.formBuilder.nonNullable.group({
+      email: ['', [Validators.email, Validators.required]]
+    })
   }
 
   register() {
     if (this.form.valid) {
       this.status = 'loading';
-      const { name, email, password } = this.form.getRawValue();
+      const { name, email, password } = this.form.getRawValue()
       this.authService.register({
         name, email, password
       }).subscribe({
@@ -78,6 +89,28 @@ export class RegisterFormComponent {
       })
     } else {
       this.form.markAllAsTouched();
+    }
+  }
+
+  validateEmail() {
+    if (this.formEmail.valid) {
+      this.statusEmail = 'loading'
+      const { email } = this.formEmail.getRawValue()
+      this.authService.isAvailable(email).subscribe({
+        next: (res) => {
+          this.status = 'success'
+          if (res.isAvailable) {
+            this.emailField?.setValue(email)
+            this.showRegister = true
+          } else {
+            this.router.navigate(['/login'], {
+              queryParams: {email}
+            })
+          }
+        }
+      })
+    } else {
+      this.formEmail.markAllAsTouched();
     }
   }
 }
