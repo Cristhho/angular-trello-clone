@@ -1,0 +1,16 @@
+<div class="w-screen h-screen bg-gray-50 relative">
+  <app-background></app-background>
+  <div class="relative w-full sm:w-6/12 lg:w-4/12 m-auto">
+    <app-header></app-header>
+    <div class="bg-white rounded shadow py-4 px-6 mt-8">
+      <div class="mb-4">
+        <app-login-form></app-login-form>
+      </div>
+      <div class="flex justify-center items-center space-x-0 space-y-2 md:space-x-2 md:space-y-0 pt-5">
+        <a routerLink="/forgot-password" class="text-blue-600">Can't log in?</a>
+        <a routerLink="/register" class="text-blue-600">Sign up for an account</a>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

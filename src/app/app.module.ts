@@ -11,7 +11,6 @@ import { ReactiveFormsModule } from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
-import { LoginComponent } from './pages/login/login.component'
 import { BtnComponent } from './components/btn/btn.component'
 import { BoardsComponent } from './pages/boards/boards.component'
 import { NavbarComponent } from './components/navbar/navbar.component'
@@ -24,7 +23,6 @@ import { TableComponent } from './pages/table/table.component'
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     BtnComponent,
     BoardsComponent,
     NavbarComponent,

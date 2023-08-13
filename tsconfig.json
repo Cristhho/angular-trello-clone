@@ -5,7 +5,8 @@
     "baseUrl": "./",
     "paths": {
       "@types": ["./src/types/index"],
-      "@models/*": ["./src/app/model/*"]
+      "@models/*": ["./src/app/model/*"],
+      "@modules/*": ["./src/app/modules/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
