@@ -16,7 +16,11 @@ const routes: Routes = [
       {
         path: 'boards',
         loadChildren: () => import('../boards/boards.module').then((m) => m.BoardsModule)
-      }
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('../profile/profile.module').then((m) => m.ProfileModule)
+      },
     ]
   }
 ]

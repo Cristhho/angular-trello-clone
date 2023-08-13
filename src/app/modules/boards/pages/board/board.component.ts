@@ -3,7 +3,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { Dialog } from '@angular/cdk/dialog'
 
 import { BoardColumn, Todo } from '@models/todo'
-import { TodoDialogComponent } from 'src/app/components/todo-dialog/todo-dialog.component'
+import { TodoDialogComponent } from '../../components/todo-dialog/todo-dialog.component'
 
 @Component({
   selector: 'app-board',
