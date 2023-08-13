@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { switchMap } from 'rxjs'
+import { switchMap, tap } from 'rxjs'
 
 import { enviroment } from '@enviroments/enviroment'
-import { RegisterDTO } from '../model/auth'
+import { LoginResponse, RegisterDTO } from '../model/auth'
+import { TokenService } from './token.service'
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,18 @@ export class AuthService {
   private readonly apiUrl = enviroment.API_URL
 
   constructor(
-    private readonly httpClient: HttpClient
+    private readonly httpClient: HttpClient,
+    private readonly token: TokenService
   ) { }
 
   login(email: string, password: string) {
-    return this.httpClient.post(`${this.apiUrl}/auth/login`, {
+    return this.httpClient.post<LoginResponse>(`${this.apiUrl}/auth/login`, {
       email, password
-    })
+    }).pipe(
+      tap((res) => {
+        this.token.saveToken(res.access_token)
+      })
+    )
   }
 
   register(body: RegisterDTO) {
