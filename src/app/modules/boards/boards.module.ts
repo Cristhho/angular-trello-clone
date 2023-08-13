@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import {CdkAccordionModule} from '@angular/cdk/accordion'
 import {DragDropModule} from '@angular/cdk/drag-drop'
+import {DialogModule} from '@angular/cdk/dialog'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 import { BoardsRoutingModule } from './boards-routing.module'
@@ -22,6 +23,7 @@ import { BoardComponent } from './pages/board/board.component'
     FontAwesomeModule,
     CdkAccordionModule,
     DragDropModule,
+    DialogModule,
     BoardsRoutingModule,
     SharedModule
   ]
