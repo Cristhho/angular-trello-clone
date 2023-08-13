@@ -9,6 +9,11 @@ import { TableComponent } from './pages/table/table.component'
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'boards'
+  },
+  {
     path: 'login',
     component: LoginComponent
   },

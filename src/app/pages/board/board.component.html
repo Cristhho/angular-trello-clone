@@ -26,7 +26,7 @@
             [cdkDropListData]="column.tasks"
             (cdkDropListDropped)="drop($event)">
             <div
-              class="bg-white shadow p-2 rounded mt-2 cursor-move"
+              class="bg-white shadow p-2 rounded mt-2 cursor-pointer"
               [ngClass]="{
                 'bg-white border-b border-x-gray-300 hover:bg-gray-400': column.title !== 'Done',
                 'bg-success-300 hover:bg-success-600': column.title === 'Done'
