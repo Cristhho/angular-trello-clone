@@ -12,9 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { BtnComponent } from './components/btn/btn.component'
-import { BoardsComponent } from './pages/boards/boards.component'
 import { NavbarComponent } from './components/navbar/navbar.component'
-import { BoardComponent } from './pages/board/board.component'
 import { TodoDialogComponent } from './components/todo-dialog/todo-dialog.component'
 import { ScrollComponent } from './pages/scroll/scroll.component'
 import { HttpClientModule } from '@angular/common/http'
@@ -24,9 +22,7 @@ import { TableComponent } from './pages/table/table.component'
   declarations: [
     AppComponent,
     BtnComponent,
-    BoardsComponent,
     NavbarComponent,
-    BoardComponent,
     TodoDialogComponent,
     ScrollComponent,
     TableComponent

@@ -1,0 +1,47 @@
+<div class="p-6 bg-gray-100 relative rounded shadow">
+  <button type="button" class="absolute top-3 right-3 focus:outline-none p-2" (click)="close()">
+    <fa-icon [icon]="iconClose"></fa-icon>
+  </button>
+  <div class="flex space-x-2 mb-5">
+    <fa-icon class="text-gray-800" [icon]="iconSlot"></fa-icon>
+    <div class="flex flex-col">
+      <h3 class="text-lg font-semibold text-gray-800">{{task.title}}</h3>
+      <p class="text-sm text-gray-500">in list ToDo</p>
+    </div>
+  </div>
+  <div class="flex w-full gap-4">
+    <div class="flex space-x-2 mb-5 w-4/6">
+      <fa-icon class="text-gray-800" [icon]="iconBars"></fa-icon>
+      <div class="flex flex-col">
+        <h3 class="text-lg font-semibold text-gray-800">Description</h3>
+        <p class="text-sm text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, hic? Adipisci soluta cum odio, beatae ratione magni nobis, optio similique rerum minus excepturi sed vel, id voluptatibus repellendus numquam quod.</p>
+      </div>
+    </div>
+    <div class="flex flex-auto space-y-2 flex-col">
+      <app-button type="button" color="gray-light" textColor="text-black">
+        <span class="text-left block px-4">
+          <fa-icon class="text-gray-800" [icon]="iconUser"></fa-icon>
+          Members
+        </span>
+      </app-button>
+      <app-button type="button" color="gray-light" textColor="text-black">
+        <span class="text-left block px-4">
+          <fa-icon class="text-gray-800" [icon]="iconTag"></fa-icon>
+          Labels
+        </span>
+      </app-button>
+      <app-button type="button" color="gray-light" textColor="text-black">
+        <span class="text-left block px-4">
+          <fa-icon class="text-gray-800" [icon]="iconCheck"></fa-icon>
+          Checklist
+        </span>
+      </app-button>
+      <app-button type="button" color="gray-light" textColor="text-black">
+        <span class="text-left block px-4">
+          <fa-icon class="text-gray-800" [icon]="iconClock"></fa-icon>
+          Dates
+        </span>
+      </app-button>
+    </div>
+  </div>
+</div>

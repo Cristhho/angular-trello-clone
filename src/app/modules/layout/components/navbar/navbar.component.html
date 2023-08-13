@@ -1,0 +1,105 @@
+<nav class="bg-sky-700 border-gray-200 px-6 shadow-md">
+  <div class="flex flex-wrap justify-end sm:justify-between items-center">
+    <div class="flex items-center">
+      <a routerLink="/">
+        <img loading="lazy" class="w-20 mr-8" src="https://trello.com/assets/d947df93bc055849898e.gif" alt="logo" />
+      </a>
+      <div class="flex items-center py-1">
+        <ul class="flex items-center space-x-2 text-sm font-medium">
+          <li>
+            <app-button
+              color="primary"
+              cdkOverlayOrigin
+              #boardsOverlay="cdkOverlayOrigin"
+              (click)="isOpenOverlayBoards = !isOpenOverlayBoards">
+              <span class="px-4">
+                <span class="mr-2">Boards</span>
+                <fa-icon [icon]="angleDownIcon"></fa-icon>
+              </span>
+            </app-button>
+          </li>
+          <li>
+            <a routerLink="/app/users" class="block py-3 px-4 text-white">Users</a>
+          </li>
+          <li>
+            <app-button type="button" color="primary"><span class="px-4">Create</span></app-button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button class="text-white">
+        <fa-icon [icon]="infoIcon"></fa-icon>
+      </button>
+      <button class="text-white">
+        <fa-icon [icon]="bellIcon"></fa-icon>
+      </button>
+      <button type="button" class="flex rounded-full" aria-expanded="false" type="button" (click)="isOpen = !isOpen"
+        cdkOverlayOrigin #accountMenuOverlay="cdkOverlayOrigin">
+        <img class="w-8 h-8 rounded-full"
+          src="https://trello-members.s3.amazonaws.com/5ea842e784d65f5422a1d7ed/e3fb66b6a097c50e040350c8f03e50b8/50.png"
+          alt="user photo" />
+      </button>
+    </div>
+  </div>
+</nav>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="accountMenuOverlay"
+  [cdkConnectedOverlayOpen]="isOpen"
+  (overlayOutsideClick)="isOpen = false">
+  <div class="z-50 my-4 w-60 text-base list-none bg-white rounded divide-y divide-gray-100 shadow">
+    <div class="py-3 px-4 flex justify-between">
+      <span class="block text-sm text-center text-gray-900">Account</span>
+      <button (click)="isOpen = !isOpen" class="block text-sm text-gray-900">
+        X
+      </button>
+    </div>
+    <div class="py-3 px-4 flex items-center space-x-4">
+      <img class="w-10 h-10 rounded-full" src="https://trello-members.s3.amazonaws.com/5ea842e784d65f5422a1d7ed/e3fb66b6a097c50e040350c8f03e50b8/50.png" alt="" />
+      <div class="space-y-1">
+        <div>Christian Ochoa</div>
+        <div class="text-sm text-gray-500">christian@google.com</div>
+      </div>
+    </div>
+    <ul class="py-1">
+      <li>
+        <a routerLink="/app/profile" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">Profile</a>
+      </li>
+      <li>
+        <a class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">Activity</a>
+      </li>
+      <li>
+        <a class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">Cards</a>
+      </li>
+      <li>
+        <a class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">Settings</a>
+      </li>
+    </ul>
+    <ul class="py-1">
+      <li>
+        <a class="block py-2 px-4 text-sm text-gray-700">Log out</a>
+      </li>
+    </ul>
+  </div>
+</ng-template>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="boardsOverlay"
+  [cdkConnectedOverlayOpen]="isOpenOverlayBoards"
+  (overlayOutsideClick)="isOpenOverlayBoards = false">
+  <div
+    class="z-50 my-4 w-60 text-base list-none bg-white rounded divide-y divide-gray-100 shadow">
+    <div class="py-2 px-4 text-center relative">
+      <span class="block text-normal text-gray-900">Boards</span>
+      <button
+        (click)="isOpenOverlayBoards = !isOpenOverlayBoards"
+        class="block text-sm text-gray-900 absolute right-3 top-3">
+        <fa-icon [icon]="closeIcon"></fa-icon>
+      </button>
+    </div>
+    <div class="py-3 px-4 flex justify-between">Content</div>
+  </div>
+</ng-template>
