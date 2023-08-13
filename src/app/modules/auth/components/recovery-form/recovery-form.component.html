@@ -1,23 +1,54 @@
 <h1 class="text-center font-bold py-2 text-gray-700">Set your new password</h1>
-<form novalidate class="space-y-4">
+<form novalidate class="space-y-4" [formGroup]="form" (ngSubmit)="changePassword()">
   <div>
     <div class="relative">
       <input
-        placeholder="Enter new password"
+        placeholder="Enter password"
+        [type]="showPassword ? 'text' : 'password'"
         class="w-full rounded bg-gray-100 border-gray-300 border-2"
-      />
+        formControlName="password" />
+      <button type="button" class="p-2 absolute right-2" (click)="showPassword = !showPassword">
+        <fa-icon [icon]="showPassword ? iconEye : iconEyeSlash"></fa-icon>
+      </button>
+    </div>
+    <div *ngIf="passwordField!.touched && passwordField!.invalid">
+      <p
+        *ngIf="passwordField!.hasError('required')"
+        class="font-medium text-red-500 text-xs mt-1 ml-1">
+        This field is mandatory
+      </p>
+      <p
+        *ngIf="passwordField!.hasError('minlength')"
+        class="font-medium text-red-500 text-xs mt-1 ml-1">
+        This field should be greater than 8 characters
+      </p>
     </div>
   </div>
   <div>
     <div class="relative">
       <input
-        placeholder="Confirm new password"
+        placeholder="Confirm password"
         type="password"
         class="w-full rounded bg-gray-100 border-gray-300 border-2"
-      />
+        formControlName="confirmPassword" />
+    </div>
+    <div *ngIf="confirmField!.touched && confirmField!.invalid">
+      <p
+        *ngIf="confirmField!.hasError('required')"
+        class="font-medium text-red-500 text-xs mt-1 ml-1">
+        This field is mandatory
+      </p>
     </div>
   </div>
+  <div *ngIf="confirmField!.touched">
+    <p
+      *ngIf="form.hasError('mismatch')"
+      class="font-medium text-red-500 text-xs mt-1 ml-1"
+    >
+      The password are not the same
+    </p>
+  </div>
   <div>
-    <app-button type="submit" color="success" class="block">Recovery</app-button>
+    <app-button type="submit" color="success" class="block" [disabled]="status === 'loading'">Recovery</app-button>
   </div>
 </form>

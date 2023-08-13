@@ -39,6 +39,9 @@ export class ForgotPasswordFormComponent {
         next: () => {
           this.status = 'success'
           this.emailSent = true
+        },
+        error: () => {
+          this.status = 'error'
         }
       })
     } else {
