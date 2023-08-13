@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
+import { switchMap } from 'rxjs'
 
 import { enviroment } from '@enviroments/enviroment'
 import { RegisterDTO } from '../model/auth'
@@ -22,6 +23,12 @@ export class AuthService {
 
   register(body: RegisterDTO) {
     return this.httpClient.post(`${this.apiUrl}/auth/register`, body)
+  }
+
+  registerAndLogin(body: RegisterDTO) {
+    return this.register(body).pipe(
+      switchMap(() => this.login(body.email, body.password))
+    )
   }
 
   isAvailable(email: string) {
