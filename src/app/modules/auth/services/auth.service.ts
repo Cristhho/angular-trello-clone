@@ -23,6 +23,7 @@ export class AuthService {
     }).pipe(
       tap((res) => {
         this.token.saveToken(res.access_token)
+        this.token.saveRefreshToken(res.refresh_token)
       })
     )
   }
@@ -51,5 +52,16 @@ export class AuthService {
 
   logout() {
     this.token.deleteToken()
+  }
+
+  refreshToken() {
+    return this.httpClient.post<LoginResponse>(`${this.apiUrl}/auth/refresh-token`, {
+      refreshToken: this.token.getRefreshToken()
+    }).pipe(
+      tap((res) => {
+        this.token.saveToken(res.access_token)
+        this.token.saveRefreshToken(res.refresh_token)
+      })
+    )
   }
 }
