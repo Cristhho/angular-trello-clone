@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 
 import { LayoutComponent } from './components/layout/layout.component'
+import { authGuard } from '../../guards/auth.guard'
 
 const routes: Routes = [
   {
@@ -15,15 +16,18 @@ const routes: Routes = [
       },
       {
         path: 'boards',
-        loadChildren: () => import('../boards/boards.module').then((m) => m.BoardsModule)
+        loadChildren: () => import('../boards/boards.module').then((m) => m.BoardsModule),
+        canActivate: [authGuard]
       },
       {
         path: 'profile',
-        loadChildren: () => import('../profile/profile.module').then((m) => m.ProfileModule)
+        loadChildren: () => import('../profile/profile.module').then((m) => m.ProfileModule),
+        canActivate: [authGuard]
       },
       {
         path: 'users',
-        loadChildren: () => import('../users/users.module').then((m) => m.UsersModule)
+        loadChildren: () => import('../users/users.module').then((m) => m.UsersModule),
+        canActivate: [authGuard]
       }
     ]
   }
