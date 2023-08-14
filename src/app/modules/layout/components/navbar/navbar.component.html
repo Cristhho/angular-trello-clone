@@ -37,7 +37,7 @@
       <button type="button" class="flex rounded-full" aria-expanded="false" type="button" (click)="isOpen = !isOpen"
         cdkOverlayOrigin #accountMenuOverlay="cdkOverlayOrigin">
         <img class="w-8 h-8 rounded-full"
-          src="https://trello-members.s3.amazonaws.com/5ea842e784d65f5422a1d7ed/e3fb66b6a097c50e040350c8f03e50b8/50.png"
+          [src]="user?.avatar"
           alt="user photo" />
       </button>
     </div>
@@ -57,10 +57,10 @@
       </button>
     </div>
     <div class="py-3 px-4 flex items-center space-x-4">
-      <img class="w-10 h-10 rounded-full" src="https://trello-members.s3.amazonaws.com/5ea842e784d65f5422a1d7ed/e3fb66b6a097c50e040350c8f03e50b8/50.png" alt="" />
+      <img class="w-10 h-10 rounded-full" [src]="user?.avatar" alt="" />
       <div class="space-y-1">
-        <div>Christian Ochoa</div>
-        <div class="text-sm text-gray-500">christian@google.com</div>
+        <div>{{user?.name}}</div>
+        <div class="text-sm text-gray-500">{{user?.email}}</div>
       </div>
     </div>
     <ul class="py-1">
