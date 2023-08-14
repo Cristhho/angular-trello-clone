@@ -9,6 +9,7 @@
       "@modules/*": ["./src/app/modules/*"],
       "@enviroments/*": ["./src/enviroments/*"],
       "@utils/*": ["./src/app/utils/*"],
+      "@interceptors/*": ["./src/app/interceptors/*"],
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
