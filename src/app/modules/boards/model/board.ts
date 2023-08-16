@@ -8,6 +8,12 @@ export interface BoardCard {
   list?: BoardColumn;
 }
 
+export interface UpdateBoardCardDTO {
+  title?: string;
+  position?: number;
+  listId?: number;
+}
+
 export interface BoardColumn {
   id: number;
   title: string;

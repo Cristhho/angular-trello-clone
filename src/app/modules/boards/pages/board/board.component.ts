@@ -44,6 +44,10 @@ export class BoardComponent implements OnInit {
     } else {
       transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex)
     }
+    const position = this.boardService.getPosition($event.container.data, $event.currentIndex)
+    const card = $event.container.data[$event.currentIndex]
+    const list = $event.container.id;
+    this.updateCard(card, position, list)
   }
 
   dropColumn($event: CdkDragDrop<BoardColumn[]>) {
@@ -68,5 +72,9 @@ export class BoardComponent implements OnInit {
     this.boardService.getBoardDetail(id).subscribe((res) => {
       this.board = res
     })
+  }
+
+  private updateCard(card: BoardCard, position: number, listId: string) {
+    this.boardService.updateBoardCard(card.id, {position, listId: +listId}).subscribe()
   }
 }

@@ -22,6 +22,7 @@
           <div
             class="text-sm py-4"
             cdkDropList
+            [id]="''+column.id"
             [cdkDropListData]="column.cards!"
             (cdkDropListDropped)="drop($event)">
             <div
