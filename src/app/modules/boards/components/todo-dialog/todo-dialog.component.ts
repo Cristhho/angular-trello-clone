@@ -2,10 +2,10 @@ import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog'
 import { Component, Inject } from '@angular/core'
 import { faClose, faCheckToSlot, faBars, faUser, faTag, faCheckSquare, faClock } from '@fortawesome/free-solid-svg-icons'
 
-import { Todo } from '@models/todo'
+import { BoardCard } from '../../model/board'
 
 interface Data {
-  task: Todo
+  task: BoardCard
 }
 interface OutData {
   res: boolean
@@ -24,7 +24,7 @@ export class TodoDialogComponent {
   iconCheck = faCheckSquare
   iconClock = faClock
 
-  task: Todo
+  task: BoardCard
 
   constructor(
     private readonly dialogRef: DialogRef<OutData>,

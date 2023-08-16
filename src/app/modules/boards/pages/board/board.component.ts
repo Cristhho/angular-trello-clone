@@ -1,9 +1,11 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop'
 import { Dialog } from '@angular/cdk/dialog'
 
-import { BoardColumn, Todo } from '@models/todo'
 import { TodoDialogComponent } from '../../components/todo-dialog/todo-dialog.component'
+import { BoardService } from '../../services/board.service'
+import { Board, BoardColumn, BoardCard } from '../../model/board'
 
 @Component({
   selector: 'app-board',
@@ -17,27 +19,26 @@ import { TodoDialogComponent } from '../../components/todo-dialog/todo-dialog.co
     }
   `]
 })
-export class BoardComponent {
+export class BoardComponent implements OnInit {
 
-  columns: BoardColumn[] = [
-    {title: 'ToDo', tasks: [
-      {id: '1', title: 'Task 1'},
-      {id: '2', title: 'Task 2'},
-      {id: '3', title: 'Task 3'}
-    ]},
-    {title: 'Doing', tasks: [
-      {id: '4', title: 'Watch Angular courses'}
-    ]},
-    {title: 'Done', tasks: [
-      {id: '5', title: 'Play videogames'}
-    ]}
-  ]
+  board?: Board
 
   constructor(
-    private readonly dialog: Dialog
+    private readonly dialog: Dialog,
+    private readonly route: ActivatedRoute,
+    private readonly boardService: BoardService
   ) {}
 
-  drop($event: CdkDragDrop<Todo[]>) {
+  ngOnInit() {
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id')
+      if (id) {
+        this.getBoard(id)
+      }
+    })
+  }
+
+  drop($event: CdkDragDrop<BoardCard[]>) {
     if ($event.previousContainer === $event.container) {
       moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex)
     } else {
@@ -49,7 +50,7 @@ export class BoardComponent {
     moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex)
   }
 
-  openModal(task: Todo) {
+  openModal(task: BoardCard) {
     const dialogRef = this.dialog.open(TodoDialogComponent, {
       minWidth: '300px',
       maxWidth: '75%',
@@ -60,6 +61,12 @@ export class BoardComponent {
     })
     dialogRef.closed.subscribe((output) => {
       console.log(output)
+    })
+  }
+
+  private getBoard(id: string) {
+    this.boardService.getBoardDetail(id).subscribe((res) => {
+      this.board = res
     })
   }
 }

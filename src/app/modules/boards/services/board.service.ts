@@ -20,4 +20,10 @@ export class BoardService {
       context: checkToken()
     })
   }
+
+  getBoardDetail(id: string) {
+    return this.httpClient.get<Board>(`${this.apiUrl}/boards/${id}`, {
+      context: checkToken()
+    })
+  }
 }
