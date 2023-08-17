@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 
 import { enviroment } from '@enviroments/enviroment'
 import { checkToken } from '@interceptors/token.interceptor'
-import { Board, BoardCard, UpdateBoardCardDTO } from '../model/board'
+import { Board, BoardCard, CreateBoardDTO, UpdateBoardCardDTO } from '../model/board'
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +49,12 @@ export class BoardService {
 
   updateBoardCard(card: number, changes: UpdateBoardCardDTO) {
     return this.httpClient.put(`${this.apiUrl}/cards/${card}`, changes, {
+      context: checkToken()
+    })
+  }
+
+  createBoard(body: CreateBoardDTO) {
+    return this.httpClient.post<Board>(`${this.apiUrl}/boards`, body, {
       context: checkToken()
     })
   }

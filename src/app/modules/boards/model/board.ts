@@ -29,3 +29,5 @@ export interface Board {
   lists: BoardColumn[];
   cards: BoardCard[];
 }
+
+export type CreateBoardDTO = Pick<Board, 'title'|'backgroundColor'>

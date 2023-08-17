@@ -7,16 +7,20 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './components/layout/layout.component';
 import { NavbarComponent } from './components/navbar/navbar.component'
 import { SharedModule } from '@modules/shared/shared.module';
+import { BoardFormComponent } from './components/board-form/board-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     LayoutComponent,
-    NavbarComponent
+    NavbarComponent,
+    BoardFormComponent
   ],
   imports: [
     CommonModule,
     OverlayModule,
     FontAwesomeModule,
+    ReactiveFormsModule,
     LayoutRoutingModule,
     SharedModule
   ]

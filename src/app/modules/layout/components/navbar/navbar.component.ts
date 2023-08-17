@@ -13,6 +13,7 @@ import { ProfileService } from '@modules/profile/services/profile.service'
 export class NavbarComponent implements OnInit {
   isOpen = false
   isOpenOverlayBoards = false
+  isOpenOverlayCreate = false
 
   bellIcon = faBell
   infoIcon = faCircleInfo

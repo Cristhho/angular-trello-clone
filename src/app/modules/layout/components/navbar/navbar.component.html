@@ -22,7 +22,17 @@
             <a routerLink="/app/users" class="block py-3 px-4 text-white">Users</a>
           </li>
           <li>
-            <app-button type="button" color="primary"><span class="px-4">Create</span></app-button>
+            <app-button
+              type="button"
+              color="primary"
+              cdkOverlayOrigin
+              #createOverlay="cdkOverlayOrigin"
+              (click)="isOpenOverlayCreate = !isOpenOverlayCreate">
+              <span class="px-4">
+                <span class="mr-2">Create</span>
+                <fa-icon [icon]="angleDownIcon"></fa-icon>
+              </span>
+            </app-button>
           </li>
         </ul>
       </div>
@@ -101,5 +111,26 @@
       </button>
     </div>
     <div class="py-3 px-4 flex justify-between">Content</div>
+  </div>
+</ng-template>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="createOverlay"
+  [cdkConnectedOverlayOpen]="isOpenOverlayCreate"
+  (overlayOutsideClick)="isOpenOverlayCreate = false">
+  <div
+    class="z-50 my-4 w-80 text-base list-none bg-white rounded divide-y divide-gray-100 shadow">
+    <div class="py-2 px-4 text-center relative">
+      <span class="block text-normal text-gray-900">Create new board</span>
+      <button
+        (click)="isOpenOverlayCreate = !isOpenOverlayCreate"
+        class="block text-sm text-gray-900 absolute right-3 top-3">
+        <fa-icon [icon]="closeIcon"></fa-icon>
+      </button>
+    </div>
+    <div class="py-3 px-4 flex justify-between">
+      <app-board-form (closeOverlay)="isOpenOverlayCreate = false"></app-board-form>
+    </div>
   </div>
 </ng-template>

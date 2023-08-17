@@ -29,6 +29,11 @@ export class BoardComponent implements OnInit {
     private readonly boardService: BoardService
   ) {}
 
+  get bgColor() {
+    if (!this.board) return ''
+    return `bg-${this.board.backgroundColor}-700`
+  }
+
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id')
